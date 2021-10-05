@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="GameHub Games - All games, new and used" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@200;400;700&family=Roboto:ital,wght@0,400;1,100&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://kit.fontawesome.com/ff8ec4a7db.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="favicon.png" sizes="16x16 32x32" type="image/png" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>Games | GameHub</title>
+  </head>
+  <body>
+    <div class="body-wrapper">
+      <header>
+        <div class="top-container">
+          <a class="logo" href="index.html">
+            <img src="logo.png" alt="GameHub Logo" />
+          </a>
+          <a class="login" href="login.html">Log in | Sign up</a>
+        </div>
+        <nav>
+          <ul class="nav-ul">
+            <li><a class="nav-link" href="index.html">Home</a></li>
+            <li><a class="nav-link current" href="games.html">games</a></li>
+            <li><a class="nav-link" href="contact.html">contact us</a></li>
+            <li>
+              <a class="nav-link" href="checkout.html"><i aria-hidden="true" class="fas fa-shopping-cart" title="go to checkout page"></i></a>
+              <span class="sr-only">Go to checkout page</span>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <section>
+          <div class="page-container">
+            <h1>New Games</h1>
+            <p>Here you'll find all the new games, with the newest one showing first.</p>
+          </div>
+          <div class="new-games-container"></div>
+        </section>
+        <section>
+          <div class="page-container">
+            <h1>Used Games</h1>
+            <p>Here you'll find all the used games. You can also sell your games here. See more in your account how to.</p>
+          </div>
+          <div class="used-games-container"></div>
+        </section>
+        <div class="cart">
+          <h3>Your cart</h3>
+          <div class="cart-list"></div>
+          <div class="total"></div>
+          <a href="checkout.html" class="checkout-link">Go to checkout</a>
+        </div>
+      </main>
+      <footer>
+        <a href="index.html">home</a>
+        <a class="current-footer" href="games.html">games</a>
+        <a href="contact.html">contact us</a>
+        <a href="checkout.html">checkout</a>
+        <a href="login.html">log in | sign up</a>
+        <a href="account.html">account page</a>
+        <button id="totop" class="totop-btn card">top of page</button>
+      </footer>
+    </div>
+    <a href="index.html"><p class="copyright">&copy; GameHub 2021</p></a>
+    <script src="js/components/to-topButton.js"></script>
+    <script src="js/components/displayError.js"></script>
+    <script src="js/games.js"></script>
+  </body>
+</html>
