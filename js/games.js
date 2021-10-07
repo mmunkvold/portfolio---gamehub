@@ -22,7 +22,7 @@ async function getNewGames(urlNewGames) {
           <a href="gamedetails.html?id=${product.id}" ><img class="game-image card " src="${product.images[0].src}"/>
           <h3>${product.name}</h3></a>
           <div class="game-price">Price: ${product.prices.regular_price},-</div>
-          <button class="add-to-cart-btn" data-product="${product.id}">Add to cart</button>
+          <button class="add-to-cart-btn" data-product="${product.name}">Add to cart</button>
         </div>
       `;
     });
@@ -30,10 +30,10 @@ async function getNewGames(urlNewGames) {
 
     buttons.forEach(function (button) {
       button.onclick = function (event) {
-        //console.log(products);
+        console.log(event.target.dataset.product.name);
 
-        const itemToAdd = products.id;
-        if (products.id == event.target.dataset.product.id) {
+        const itemToAdd = event.target.dataset.product;
+        if (products.name == event.target.dataset.product.name) {
           cartArray.push(itemToAdd);
         }
         //cartArray.push(itemToAdd);
@@ -106,7 +106,7 @@ function showCart(cartItems) {
     <div class="cart-item">
     <h4>${cartElement.name}</h4> 
     <div style="background-image: url(${cartElement.image})" class="cart-image">
-    </div></div>`;
+    </div><button class="remove-btn"></button></div>`;
   });
   totalContainer.innerHTML = `Total: kr ${total},-`;
 }
