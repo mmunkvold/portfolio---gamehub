@@ -9,7 +9,6 @@ body {
 }
 
 :root {
-  /*  --body-bg: #f9f9f9; */
   --ff-h: "Gemunu Libre", sans-serif;
   --ff-p: "Roboto", sans-serif;
   --fs-h1: 3rem;
@@ -24,6 +23,7 @@ body {
   --green-color: #008000;
   --red-color: rgb(250, 20, 20);
   --orange-color: #fb7641;
+  --pink-color: hotpink;
   --box-shadow: 0.25em 0.25em 0.75em rgba(0, 0, 0, 0.25), 0.125em 0.125em 0.25em rgba(0, 0, 0, 0.15);
 }
 
@@ -39,7 +39,9 @@ img {
   max-width: 100%;
 }
 
-/* TYPOGRAPHY */
+/* ================
+      TYPOGRAPHY 
+===================*/
 
 h1,
 h2,
@@ -48,7 +50,7 @@ h3 {
   color: var(--white-color);
 }
 
-/* Buttons and links */
+/* BUTTONS AND LINKS */
 
 a {
   color: var(--white-color);
@@ -56,14 +58,12 @@ a {
 }
 
 a:hover {
-  color: hotpink;
-  text-decoration: hotpink 2px;
-  /* text-decoration-color: hotpink;
-  text-decoration-thickness: 2px; */
+  color: var(--pink-color);
+  text-decoration: var(--pink-color) 2px;
 }
 
 :focus {
-  outline: 1px solid hotpink; /* Change this color!! */
+  outline: 1px solid var(--pink-color);
   outline-offset: 3px;
 }
 
@@ -73,7 +73,7 @@ a:hover {
   display: block;
   height: 2px;
   margin: 0 0 1em;
-  background: hotpink;
+  background: var(--pink-color);
 }
 
 .current::after {
@@ -128,27 +128,6 @@ button:hover {
   padding: 0.5em;
 }
 
-/* .checkout-btn {
-  background: var(--green-color);
-  /*  color: var(--white-color);
-  margin-top: 1em; /* Margin here dont work!! 
-  padding: 0.2em 0.4em; 
-} */
-
-/* .checkout-btn:hover {
-  border: 2px solid var(--grey-color);
-} */
-
-/* .add-to-cart-btn {
-  background: rgb(240, 144, 84); /* This needs styling 
-  padding: 0.2em 0.5em;
-  margin: 0.5em 0;
-} */
-
-/* .add-to-cart-btn:hover {
-  border: 1px solid var(--grey-color); /* This needs styling 
-} */
-
 ul {
   list-style: none;
 }
@@ -189,10 +168,6 @@ nav {
   margin: 0 auto;
   border: 2px solid var(--grey-color);
 }
-/* 
-main {
-  margin-bottom: 4em;
-} */
 
 .featured {
   background-image: url("../images/cover.png");
@@ -253,7 +228,7 @@ main {
 }
 
 .games-box:hover {
-  border: 2px solid hotpink;
+  border: 2px solid var(--pink-color);
 }
 
 .games-box-1,
@@ -278,6 +253,7 @@ main {
 }
 
 /* FOOTER */
+
 footer {
   display: flex;
   flex-direction: column;
@@ -326,7 +302,6 @@ footer a {
 .fa-coins,
 .fa-envelope-open-text {
   font-size: 3em;
-  /*   margin:0 auto; */
 }
 
 .horizontal-line {
@@ -335,37 +310,65 @@ footer a {
   border-bottom: 2px solid #ddd;
 }
 
+.error-msg {
+  border: 2px solid var(--red-color);
+  background-color: var(--white-color);
+  padding: 1em;
+}
+
+.loading-indicator {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 5px dotted var(--grey-color);
+  animation: spin 7s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* ===============
      GAMES PAGE 
 ==================*/
 
 .new-games-container,
-.used-games-container {
+.used-games-container,
+.search-result {
   display: grid;
   margin: 1.8em auto 4em;
   padding: 0 1em;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(150px, 1fr)
-  ); /* Her må det gjøres noe da det ser rart ut med ulikt antall.... kanskje ikke autofit og minmax? */
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1em;
 }
 
 .game {
+  background: var(--light-bg);
+  color: #999;
+}
+
+.game,
+.search-result-item {
   width: 100%;
   margin: 0 auto;
   padding: 0 1.5em 1.5em;
-  background: var(--light-bg);
-  color: #999;
   position: relative;
 }
 
-.game h3 {
+.game h3,
+.search-result-item h3 {
   color: var(--dark-color);
 }
 
 .game-price {
-  font-weight: bold;
+  font-size: smaller;
   color: var(--dark-color);
 }
 
@@ -472,15 +475,11 @@ footer a {
 .account-top {
   display: flex;
   flex-direction: column;
-  /* flex-wrap: wrap; */
 }
 
 .account-menu {
   display: flex;
   flex-direction: column;
-  /* position: absolute; */
-  /*   z-index: 1; */
-  /*   margin-top: 0; */
   font-size: smaller;
 }
 
@@ -505,10 +504,6 @@ footer a {
   color: var(--dark-color);
 }
 
-/* .account-box-1,.account-box-2{
-  min-width: 33,33%;
-} */
-
 .account-box-1 {
   background-image: url("../images/gamerwheadset.jpg");
   background-position: right;
@@ -524,23 +519,19 @@ footer a {
 }
 
 .account-box-3 {
-  background-image: /* url("../icons/money.png"), */ linear-gradient(black, steelblue);
-  /* background-position: bottom; */
+  background-image: linear-gradient(black, steelblue);
 }
 
 .account-box-4 {
-  background-image: /* url("../icons/coins.png"), */ linear-gradient(black, steelblue);
-  /* background-position: right; */
+  background-image: linear-gradient(black, steelblue);
 }
 
 .account-box-5 {
-  background-image: /* url("../icons/headset.png"), */ linear-gradient(black, steelblue);
-  /* background-position: right; */
+  background-image: linear-gradient(black, steelblue);
 }
 
 .account-box-6 {
-  background-image: /* url("../icons/letter.png"), */ linear-gradient(black, steelblue);
-  /* background-position: right; */
+  background-image: linear-gradient(black, steelblue);
 }
 
 .account-box-3,
@@ -557,8 +548,10 @@ footer a {
 ==========================*/
 
 .checkout-container {
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  border: 2px solid var(--grey-color);
+  padding: 1em;
 }
 
 .form-wrapper {
@@ -575,7 +568,8 @@ footer a {
 ==========================*/
 
 .cart {
-  border: 5px solid var(--orange-color);
+  border: 5px solid var(--green-color);
+  background: var(--white-color);
   max-width: 500px;
   min-width: 200px;
   padding: 15px;
@@ -584,10 +578,13 @@ footer a {
   right: 5px;
   top: 140px;
   display: none;
-  background: #f6f6f6;
-  flex-direction: column;
   z-index: 1;
   transform: translateX(-10%);
+}
+
+.cart-item {
+  display: flex;
+  gap: 1em;
 }
 
 .cart h3 {
@@ -596,10 +593,28 @@ footer a {
   margin-top: 0;
 }
 
+.cart h4 {
+  margin-top: 1em;
+}
+
 .cart-image {
-  width: 50px;
-  background-size: cover;
+  width: 70px;
   margin-bottom: 0.5em;
+}
+
+#checkout-price {
+  margin-top: 1.3em;
+  margin-right: 0.4em;
+}
+
+#checkout-price,
+.total {
+  text-align: right;
+}
+
+.total {
+  margin-bottom: 1.5em;
+  font-weight: bolder;
 }
 
 /* ====================
@@ -616,14 +631,10 @@ footer a {
 
 @media (min-width: 550px) {
   .account-top {
-    /* display: flex; */
     flex-direction: row;
-    /*  flex-wrap: wrap; */
   }
 
   .account-menu {
-    /* display: flex; */
-    /*  flex-direction: column; */
     position: absolute;
   }
 
@@ -631,6 +642,7 @@ footer a {
     margin: 0 auto;
   }
 }
+
 /* ================================================ */
 @media (min-width: 600px) {
   .cart {
@@ -646,11 +658,13 @@ footer a {
   nav {
     font-size: 1.2rem;
   }
+
   .nav-ul {
     width: 70%;
     margin: 0 auto;
   }
 }
+
 /* ================================================ */
 
 @media (min-width: 650px) {
@@ -662,6 +676,7 @@ footer a {
   .games-box {
     margin: 2em 1em;
   }
+
   .games-box-1,
   .account-box-1,
   .account-box-2 {
@@ -677,7 +692,6 @@ footer a {
 
   .account-top {
     justify-content: space-between;
-    flex-direction: row;
   }
 
   .welcome {
@@ -726,7 +740,12 @@ footer a {
   .right {
     margin-right: auto;
   }
+
+  .checkout-container {
+    width: 80%;
+  }
 }
+
 /* ================================================ */
 
 @media (min-width: 800px) {

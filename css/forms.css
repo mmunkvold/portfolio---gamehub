@@ -29,19 +29,9 @@ textarea {
   font-family: inherit;
   font-size: 80%;
   border: none;
-  /*  border-radius: 5px; */
-  /* box-shadow: 1px 1px 1px 1px grey; */
-  /*  margin-bottom: 0.75em;
-  margin-right: 2em; */
   margin: 0.5em 0 0.9em;
-  /*   padding: 0.4em 0; */
   width: 250px;
 }
-
-/* input:focus,
-textarea:focus {
-  background: rgba(31, 30, 30, 0.1);
-} */
 
 textarea {
   resize: none;
@@ -50,15 +40,52 @@ textarea {
   min-height: 100px;
 }
 
+.search-form {
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: none;
+  border-radius: 0.2rem;
+  position: absolute;
+  top: 7em;
+  right: 1em;
+}
+
+#search {
+  font-family: inherit;
+  border: 2px solid var(--grey-color);
+  padding: 0.6em;
+}
+
+#search-btn {
+  padding: 0.5em 0.7em;
+}
+
+::placeholder {
+  color: var(--dark-color);
+}
+
 /* ========================
     Success/Error Messages 
 ============================*/
 
-.success {
+.success,
+.success-checkout-page {
   background: var(--light-green);
   color: var(--white-color);
   border: 2px solid var(--main-green);
   padding: 1em;
+}
+
+.success,
+.success-checkout-page {
+  width: 50%;
+  max-height: 5em;
+  margin: 2em auto;
+}
+
+.success p,
+.success-checkout-page p {
+  text-align: left;
 }
 
 .success,
@@ -79,26 +106,24 @@ textarea {
     MEDIA QUERIES
     ================= */
 
-@media (min-width: 760px) {
-  #search-input,
-  #search-btn {
-    display: inline;
-    height: 35px;
-    border-radius: 0;
-    border: 1px solid var(--grey-color);
+@media (min-width: 500px) {
+  .search-form {
+    top: 7.5em;
+  }
+}
+
+@media (min-width: 600px) {
+  .search-form {
+    position: static;
   }
 
-  #search-input {
-    width: 250px;
+  #search {
+    padding: 0.3em;
   }
+}
 
-  #search-btn {
-    padding: 0 10px;
-  }
-
-  .contact-form,
-  .login-form,
-  .signup-form {
-    width: 360px;
+@media (min-width: 800px) {
+  #search {
+    width: 350px;
   }
 }
