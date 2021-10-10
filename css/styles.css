@@ -481,6 +481,7 @@ footer a {
   display: flex;
   flex-direction: column;
   font-size: smaller;
+  margin-top: 2em;
 }
 
 .welcome h1,
