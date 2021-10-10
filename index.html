@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="GameHub - Where you buy and sell games online" />
+    <meta name="description" content="GameHub - Universe of Games - The place where you buy and sell games online" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,7 +14,8 @@
     <script src="https://kit.fontawesome.com/ff8ec4a7db.js" crossorigin="anonymous"></script>
     <link rel="icon" href="favicon.png" sizes="16x16 32x32" type="image/png" />
     <link rel="stylesheet" href="css/styles.css" />
-    <title>Home | GameHub</title>
+    <link rel="stylesheet" href="css/forms.css" />
+    <title>Home | gamehub</title>
   </head>
   <body>
     <div class="body-wrapper">
@@ -23,7 +24,12 @@
           <a class="logo" href="index.html">
             <img src="logo.png" alt="GameHub Logo" />
           </a>
-          <a class="login" href="login.html">Log in | Sign up</a>
+          <form class="search-form" action="search.html" method="GET">
+            <label for="search" aria-label="Search"></label>
+            <input type="search" id="search" placeholder="Search this site..." />
+            <button id="search-btn" type="submit">search</button>
+          </form>
+          <a class="login" href="login.html">Log in</a>
         </div>
         <nav>
           <ul class="nav-ul">
@@ -41,8 +47,6 @@
         <section class="featured">
           <h1>The place to play, buy and sell games</h1>
           <p>We are all here for a reason...</p>
-          <!--  <a class="login-btn" href="login.html">Log in</a>
-        <a class="signup-btn" href="signup.html">Sign up</a> -->
         </section>
         <section class="games-box-wrapper">
           <a class="card games-box games-box-1" href="games.html">
@@ -62,15 +66,15 @@
         <a href="games.html">games</a>
         <a href="contact.html">contact us</a>
         <a href="checkout.html">checkout</a>
-        <a href="login.html">log in | sign up</a>
+        <a href="login.html">log in</a>
+        <a href="signup.html">sign up</a>
         <a href="account.html">account page</a>
+        <a href="search.html">search</a>
         <button id="totop" class="totop-btn card">top of page</button>
       </footer>
     </div>
     <a href="index.html"><p class="copyright">&copy; GameHub 2021</p></a>
     <script src="js/components/to-topButton.js"></script>
     <script src="js/components/displayError.js"></script>
-    <script src="js/cart.js"></script>
-    <!-- <script src="js/index.js"></script> -->
   </body>
 </html>
