@@ -1,14 +1,12 @@
 const newGamesContainer = document.querySelector(".new-games-container");
-
 const urlNewGames = "https://monicamunkvoldnikolaisen.no/gamehub/wp-json/wc/store/products?category=16";
 
 const cart = document.querySelector(".cart");
-const cartItems = JSON.parse(localStorage.getItem("cartList"));
 const cartList = document.querySelector(".cart-list");
 const totalContainer = document.querySelector(".total");
 let cartArray = [];
 
-async function getNewGames(urlNewGames) {
+async function getNewGames() {
   try {
     const response = await fetch(urlNewGames);
     const products = await response.json();
@@ -22,41 +20,29 @@ async function getNewGames(urlNewGames) {
           <a href="gamedetails.html?id=${product.id}" ><img class="game-image card " src="${product.images[0].src}"/>
           <h3>${product.name}</h3></a>
           <div class="game-price">Price: ${product.prices.regular_price},-</div>
-          <button class="add-to-cart-btn" data-product="${product.name}">Add to cart</button>
+          <button class="add-to-cart-btn" data-name="${product.name}" data-price="${product.prices.regular_price}" data-image="${product.images[0].src}">Add to cart</button>
         </div>
       `;
     });
-    const buttons = Array.from(document.getElementsByClassName("add-to-cart-btn"));
+
+    const buttons = document.querySelectorAll(".add-to-cart-btn");
 
     buttons.forEach(function (button) {
-      button.onclick = function (event) {
-        console.log(event.target.dataset.product.name);
-
-        const itemToAdd = event.target.dataset.product;
-        if (products.name == event.target.dataset.product.name) {
-          cartArray.push(itemToAdd);
-        }
-        //cartArray.push(itemToAdd);
-        showCart(cartArray);
-        localStorage.setItem("cartList", JSON.stringify(cartArray));
-      };
+      button.addEventListener("click", addItemToCart);
     });
   } catch (error) {
     newGamesContainer.innerHTML = displayError("Oh dear, something isn't working...");
   }
 }
-getNewGames(urlNewGames);
+
+getNewGames();
 
 /* ========================================================== */
 
-// Used games:
-
 const usedGamesContainer = document.querySelector(".used-games-container");
-
 const urlUsedGames = "https://monicamunkvoldnikolaisen.no/gamehub/wp-json/wc/store/products?category=15";
-//console.log(urlUsedGames);
 
-async function getUsedGames(urlUsedGames) {
+async function getUsedGames() {
   try {
     const response = await fetch(urlUsedGames);
     const products = await response.json();
@@ -70,43 +56,48 @@ async function getUsedGames(urlUsedGames) {
           <a href="gamedetails.html?id=${product.id}" ><img class="game-image card " src="${product.images[0].src}"/>
           <h3>${product.name}</h3></a>
           <div class="game-price">Price: ${product.prices.regular_price},-</div>
-          <button class="add-to-cart-btn" data-product="${product.id}">Add to cart</button>
+          <button class="add-to-cart-btn" data-name="${product.name}" data-price="${product.prices.regular_price}" data-image="${product.images[0].src}">Add to cart</button>
         </div>
       `;
     });
-    const buttons = Array.from(document.getElementsByClassName("add-to-cart-btn"));
+    const buttons = document.querySelectorAll(".add-to-cart-btn");
 
     buttons.forEach(function (button) {
-      button.onclick = function (event) {
-        //console.log(products);
-
-        const itemToAdd = products.id;
-        if (products.id == event.target.dataset.product.id) {
-          cartArray.push(itemToAdd);
-        }
-        //cartArray.push(itemToAdd);
-        showCart(cartArray);
-        localStorage.setItem("cartList", JSON.stringify(cartArray));
-      };
+      button.addEventListener("click", addItemToCart);
     });
   } catch (error) {
     usedGamesContainer.innerHTML = displayError("Oh dear, something isn't working...");
   }
 }
-getUsedGames(urlUsedGames);
 
-function showCart(cartItems) {
+getUsedGames();
+
+function addItemToCart(event) {
+  const name = event.target.dataset.name;
+  const price = event.target.dataset.price;
+  const image = event.target.dataset.image;
+
+  cartArray.push({ name, price, image });
+
+  localStorage.setItem("cartList", JSON.stringify(cartArray));
+  showCart();
+}
+
+function showCart() {
+  const cartItems = JSON.parse(localStorage.getItem("cartList"));
   cart.style.display = "block";
   cartList.innerHTML = "";
   let total = 0;
-  //console.log(cartItems); //gives an array of the products clicked
+
   cartItems.forEach(function (cartElement) {
-    total += cartElement.price; //GET CARTELEMENT UNDEFINED
+    total += parseFloat(cartElement.price);
+
     cartList.innerHTML += `
-    <div class="cart-item">
-    <h4>${cartElement.name}</h4> 
-    <div style="background-image: url(${cartElement.image})" class="cart-image">
-    </div><button class="remove-btn"></button></div>`;
+      <div class="cart-item">
+        <img class="cart-image" src="${cartElement.image}"/>
+        <h4>${cartElement.name}</h4>
+        <p>kr ${cartElement.price},-</p>
+      </div>`;
   });
-  totalContainer.innerHTML = `Total: kr ${total},-`;
+  totalContainer.innerHTML = `<hr></hr>Total: kr ${total},-`;
 }

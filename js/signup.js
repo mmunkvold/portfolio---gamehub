@@ -12,9 +12,6 @@ const passwordError = document.querySelector("#password + div.error");
 const passwordMatch = document.querySelector("#repeatpassword");
 const passwordMatchError = document.querySelector("#repeatpassword + div.error");
 
-/* const number = document.querySelector("#birthday");
-const numberError = document.querySelector(".number-error"); */
-
 const showSuccessMessage = document.querySelector(".success");
 
 function validateForm(event) {
@@ -46,19 +43,11 @@ function validateForm(event) {
     console.log("matcher ikke");
   }
 
-  /* if (validateNumber(number.value) === true) {
-    numberError.style.display = "none";
-    console.log("riktig lengde");
-  } else {
-    numberError.style.display = "block";
-    console.log("for lang");
-  } */
-
   if (
     checkLength(fullname.value, 3) &&
     validateEmail(email.value) &&
     checkLength(password.value, 7) &&
-    checkMatch(passwordMatch.value, password.value) === /* && validateNumber(number.value) */ true
+    checkMatch(passwordMatch.value, password.value) === true
   ) {
     showSuccessMessage.style.display = "block";
     signupForm.style.display = "none";
@@ -69,7 +58,7 @@ function validateForm(event) {
 
 signupForm.addEventListener("submit", validateForm);
 
-// the functions used in the function above:
+// The functions used in the function above:
 
 function checkLength(value, len) {
   if (value.trim().length > len) {
@@ -92,9 +81,3 @@ function checkMatch(value1, value2) {
     return false;
   }
 }
-
-/* function validateNumber(number) {
-  const regEx = /^(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])(19|20)\\d\\d$/;
-  const patternMatches = regEx.test(number);
-  return patternMatches;
-} */
